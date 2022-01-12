@@ -56,6 +56,89 @@ export const constantRoutes = [
   },
 
   {
+    path: '/kejicheng',
+    component:Layout,
+    children: [{
+      path: 'index',
+      name:'kejicheng',
+      component:()=>import('@/views/kejicheng/index'),
+      meta: {title:'科技城新区'}
+    }]
+  },
+
+  {
+    path: '/center-area',
+    component:Layout,
+    children: [{
+      path: 'index',
+      name:'center-area',
+      component:()=>import('@/views/center-area/index'),
+      meta: {title:'中心城区'}
+    }]
+  },
+
+  {
+    path: '/nonglv',
+    component:Layout,
+    children: [{
+      path: 'index',
+      name:'nonglv',
+      component:()=>import('@/views/nonglv/index'),
+      meta: {title:'农旅融合社'}
+    }]
+  },
+
+  {
+    path: '/lingang',
+    component:Layout,
+    name:'lingang',
+    meta: {title:'临港经济开发区'},
+    children: [
+      {
+        path: 'east',
+        name:'east',
+        component:()=>import('@/views/lingang/east/index'),
+        meta: {title:'临港经济发展东区'}
+      },
+      {
+        path: 'south',
+        name:'south',
+        component:()=>import('@/views/lingang/south/index'),
+        meta: {title:'临港经济发展南区'}
+      },
+      {
+        path: 'west',
+        name:'west',
+        component:()=>import('@/views/lingang/west/index'),
+        meta: {title:'临港经济发展西区'}
+      },
+
+    ]
+  },
+
+  {
+    path: '/property',
+    component:Layout,
+    children: [{
+      path: 'index',
+      name:'property',
+      component:()=>import('@/views/property/index'),
+      meta: {title:'产业类别'}
+    }]
+  },
+
+  {
+    path: '/project',
+    component:Layout,
+    children: [{
+      path: 'index',
+      name:'project',
+      component:()=>import('@/views/project/index'),
+      meta: {title:'项目管理'}
+    }]
+  },
+//下面不要
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
@@ -76,89 +159,89 @@ export const constantRoutes = [
       }
     ]
   },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
-  },
+//
+//   {
+//     path: '/form',
+//     component: Layout,
+//     children: [
+//       {
+//         path: 'index',
+//         name: 'Form',
+//         component: () => import('@/views/form/index'),
+//         meta: { title: 'Form', icon: 'form' }
+//       }
+//     ]
+//   },
+//
+//   {
+//     path: '/nested',
+//     component: Layout,
+//     redirect: '/nested/menu1',
+//     name: 'Nested',
+//     meta: {
+//       title: 'Nested',
+//       icon: 'nested'
+//     },
+//     children: [
+//       {
+//         path: 'menu1',
+//         component: () => import('@/views/nested/menu1/index'), // Parent router-view
+//         name: 'Menu1',
+//         meta: { title: 'Menu1' },
+//         children: [
+//           {
+//             path: 'menu1-1',
+//             component: () => import('@/views/nested/menu1/menu1-1'),
+//             name: 'Menu1-1',
+//             meta: { title: 'Menu1-1' }
+//           },
+//           {
+//             path: 'menu1-2',
+//             component: () => import('@/views/nested/menu1/menu1-2'),
+//             name: 'Menu1-2',
+//             meta: { title: 'Menu1-2' },
+//             children: [
+//               {
+//                 path: 'menu1-2-1',
+//                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+//                 name: 'Menu1-2-1',
+//                 meta: { title: 'Menu1-2-1' }
+//               },
+//               {
+//                 path: 'menu1-2-2',
+//                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+//                 name: 'Menu1-2-2',
+//                 meta: { title: 'Menu1-2-2' }
+//               }
+//             ]
+//           },
+//           {
+//             path: 'menu1-3',
+//             component: () => import('@/views/nested/menu1/menu1-3'),
+//             name: 'Menu1-3',
+//             meta: { title: 'Menu1-3' }
+//           }
+//         ]
+//       },
+//       {
+//         path: 'menu2',
+//         component: () => import('@/views/nested/menu2/index'),
+//         name: 'Menu2',
+//         meta: { title: 'menu2' }
+//       }
+//     ]
+//   },
+//
+//   {
+//     path: 'external-link',
+//     component: Layout,
+//     children: [
+//       {
+//         path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+//         meta: { title: 'External Link', icon: 'link' }
+//       }
+//     ]
+//   },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

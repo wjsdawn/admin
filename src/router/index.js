@@ -56,12 +56,12 @@ export const constantRoutes = [
   },
 
   {
-    path: '/kejicheng',
+    path: '/science-area',
     component:Layout,
     children: [{
       path: 'index',
-      name:'kejicheng',
-      component:()=>import('@/views/kejicheng/index'),
+      name:'science-area',
+      component:()=>import('@/views/science-area/index'),
       meta: {title:'科技城新区'}
     }]
   },

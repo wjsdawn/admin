@@ -9,6 +9,8 @@ const science_area_list = require('./science-area')
 const lingang_east_list = require('./lingang-east')
 const lingang_south_list = require('./lingang-south')
 const lingang_west_list = require('./lingang-west')
+const property_list = require('./property')
+const project_list = require('./project')
 
 const mocks = [
   ...user,
@@ -19,6 +21,8 @@ const mocks = [
   ...lingang_east_list,
   ...lingang_south_list,
   ...lingang_west_list,
+  ...property_list,
+  ...project_list,
 ]
 
 // for front mock

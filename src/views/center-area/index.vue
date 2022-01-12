@@ -18,6 +18,11 @@
           {{ scope.row.area }}
         </template>
       </el-table-column>
+      <el-table-column label="产业类别" width="250" align="center" >
+        <template slot-scope="scope">
+          {{ scope.row.property }}
+        </template>
+      </el-table-column>
       <el-table-column label="项目名称" width="500" align="center">
         <template slot-scope="scope">
           {{scope.row.project}}

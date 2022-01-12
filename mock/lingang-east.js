@@ -5,6 +5,7 @@ const data = Mock.mock({
     id: '@id',
     area: '临港经济发展区东区',
     'status|1': ['审核通过', '审核中', '审核不通过'],
+    property:'@name',
     project: '@title',
     principal: '@cname',
     display_time: '@datetime',

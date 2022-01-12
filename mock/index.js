@@ -3,12 +3,22 @@ const { param2Obj } = require('./utils')
 
 const user = require('./user')
 const table = require('./table')
-const center_area_list = require("./center-area")
+const center_area_list = require('./center-area')
+const nong_area_list = require('./nong-area')
+const science_area_list = require('./science-area')
+const lingang_east_list = require('./lingang-east')
+const lingang_south_list = require('./lingang-south')
+const lingang_west_list = require('./lingang-west')
 
 const mocks = [
   ...user,
   ...table,
-  ...center_area_list
+  ...center_area_list,
+  ...nong_area_list,
+  ...science_area_list,
+  ...lingang_east_list,
+  ...lingang_south_list,
+  ...lingang_west_list,
 ]
 
 // for front mock

@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getCenter(params) {
+export function getScienceList(params) {
   return request({
-    url: '/vue-admin/science-area/List',
+    url: '/vue-admin-template/science-area/List',
     method: 'post',
     params
   })

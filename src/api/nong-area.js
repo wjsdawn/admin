@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getCenter(params) {
+export function getNongList(params) {
   return request({
-    url: '/vue-admin/nong-area/List',
+    url: '/vue-admin-template/nong-area/List',
     method: 'post',
     params
   })

@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getCenter(params) {
+export function getLingangWestList(params) {
   return request({
-    url: '/vue-admin/lingang-west/List',
+    url: '/vue-admin-template/lingang-west/List',
     method: 'post',
     params
   })

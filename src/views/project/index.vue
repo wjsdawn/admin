@@ -55,7 +55,7 @@ export default {
       const statusMap = {
         审核通过: 'success',
         待审核: 'gray',
-        审核中: 'danger'
+        审核不通过: 'danger'
       }
       return statusMap[status]
     }

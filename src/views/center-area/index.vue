@@ -46,7 +46,7 @@
       </el-table-column>
       <el-table-column width="200" align="center">
         <template slot="header" slot-scope="scope">
-          <el-button type="primary" @click="handleAdd()">添加项目</el-button>
+          <el-button type="primary" @click="handleAdd">添加项目</el-button>
         </template>
         <template slot-scope="scope">
           <el-button
@@ -177,10 +177,10 @@ export default {
   data() {
     return {
       list: null,
-      property: null,
       listLoading: true,
       dialogEdit: false,
       dialogAdd: false,
+      property: null,
       editForm: {
         property: '',
         project: '',

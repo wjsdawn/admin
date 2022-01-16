@@ -5,7 +5,7 @@ const data = Mock.mock({
     id: '@id',
     area: '农旅融合区',
     'status|1': ['审核通过', '待审核', '审核不通过'],
-    property: '@ctitle',
+    'property|1-5': ['@ctitle'],
     project: '@title',
     principal: '@cname',
     display_time: '@datetime',

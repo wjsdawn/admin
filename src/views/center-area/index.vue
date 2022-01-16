@@ -20,7 +20,7 @@
       </el-table-column>
       <el-table-column label="产业类别" width="250" align="center">
         <template slot-scope="scope">
-          {{ scope.row.property }}
+          {{ scope.row.property.toString() }}
         </template>
       </el-table-column>
       <el-table-column label="项目名称" width="500" align="center">
@@ -181,20 +181,8 @@ export default {
       dialogEdit: false,
       dialogAdd: false,
       property: null,
-      editForm: {
-        property: '',
-        project: '',
-        principal: '',
-        status: '',
-        dateTime: ''
-      },
-      addForm: {
-        property: '',
-        project: '',
-        principal: '',
-        status: '',
-        dateTime: ''
-      }
+      editForm: {},
+      addForm: {}
     }
   },
   created() {

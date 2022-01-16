@@ -5,7 +5,7 @@
       :data="list.filter(data =>
         (data.project.toLowerCase().includes(searchProject.toLowerCase()))
         &&data.principal.toLowerCase().includes(searchPrincipal.toLowerCase())
-        &&data.property.toLowerCase().includes(searchProperty.toLowerCase()))"
+        &&data.property.toString().toLowerCase().includes(searchProperty.toString().toLowerCase()))"
       element-loading-text="Loading"
       border
       fit
@@ -46,7 +46,7 @@
           </el-popover>
         </template>
         <template slot-scope="scope">
-          {{ scope.row.property }}
+          {{ scope.row.property.toString() }}
         </template>
       </el-table-column>
       <el-table-column label="项目名称" width="500" align="center">
@@ -239,20 +239,8 @@ export default {
       dialogEdit: false,
       dialogAdd: false,
       property: null,
-      editForm: {
-        property: [],
-        project: '',
-        principal: '',
-        status: '',
-        dateTime: ''
-      },
-      addForm: {
-        property: [],
-        project: '',
-        principal: '',
-        status: '',
-        dateTime: ''
-      },
+      editForm: {},
+      addForm: {},
       searchProject: '',
       searchPrincipal: '',
       searchProperty: ''
@@ -266,6 +254,9 @@ export default {
       this.listLoading = true
       getProject().then(response => {
         this.list = response.data.items
+        // for (const i in this.list) {
+        //   this.list[i].property = this.list[i].property.toString()
+        // }
         this.listLoading = false
       })
       getProperty().then(response => {
@@ -296,10 +287,10 @@ export default {
       this.dialogEdit = false
       // eslint-disable-next-line no-undef
       this.editForm.dateTime = new Date().toLocaleString('cn', { hour12: false })
-      this.editForm = {}
       console.log('editForm:')
       console.log(this.editForm)
       console.log('--------------------')
+      this.editForm = {}
     },
     // endregion
     // region addForm
@@ -314,10 +305,10 @@ export default {
       this.dialogAdd = false
       // eslint-disable-next-line no-undef
       this.addForm.dateTime = new Date().toLocaleString('cn', { hour12: false })
-      this.addForm = {}
       console.log('addForm:')
       console.log(this.addForm)
       console.log('--------------------')
+      this.addForm = {}
     },
     // endregion
     // 状态筛选

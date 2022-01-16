@@ -2,7 +2,10 @@
   <div class="app-container">
     <el-table
       v-loading="listLoading"
-      :data="list.filter(data => data.project.toLowerCase().includes(searchProject.toLowerCase()))"
+      :data="list.filter(data =>
+        (data.project.toLowerCase().includes(searchProject.toLowerCase()))
+        &&data.principal.toLowerCase().includes(searchPrincipal.toLowerCase())
+        &&data.property.toLowerCase().includes(searchProperty.toLowerCase()))"
       element-loading-text="Loading"
       border
       fit
@@ -13,12 +16,35 @@
           {{ scope.$index }}
         </template>
       </el-table-column>
-      <el-table-column label="区域" align="center">
+      <el-table-column
+        label="区域"
+        align="center"
+        :filters="[{ text: '科技城区', value: '科技城区' },
+                   { text: '中心城区', value: '中心城区' },
+                   { text: '农旅融合区', value: '农旅融合区'},
+                   { text: '临港经济发展区西区', value: '临港经济发展区西区'},
+                   { text: '临港经济发展区东区', value: '临港经济发展区东区'},
+                   { text: '临港经济发展区南区', value: '临港经济发展区南区'},]"
+        :filter-method="filterArea">
         <template slot-scope="scope">
           {{ scope.row.area }}
         </template>
       </el-table-column>
       <el-table-column label="产业类别" width="250" align="center">
+        <template slot="header" slot-scope="scope">
+          <el-popover
+            placement="top"
+            trigger="click"
+          >
+            <el-input
+              v-model="searchProperty"
+              placeholder="请输入筛选条件"
+              style="width: 400px"
+              clearable
+            />
+            <span slot="reference" :style="!searchProperty?{}:{color:'#409EFF'}">产业类别</span>
+          </el-popover>
+        </template>
         <template slot-scope="scope">
           {{ scope.row.property }}
         </template>
@@ -31,11 +57,11 @@
           >
             <el-input
               v-model="searchProject"
-              placeholder="输入"
+              placeholder="请输入筛选条件"
               style="width: 400px"
-              clearable>
-            </el-input>
-            <span slot="reference">项目名称</span>
+              clearable
+            />
+            <span slot="reference" :style="!searchProject?{}:{color:'#409EFF'}">项目名称</span>
           </el-popover>
         </template>
         <template slot-scope="scope">
@@ -43,6 +69,20 @@
         </template>
       </el-table-column>
       <el-table-column label="负责人" width="110" align="center">
+        <template slot="header" slot-scope="scope">
+          <el-popover
+            placement="top"
+            trigger="click"
+          >
+            <el-input
+              v-model="searchPrincipal"
+              placeholder="请输入筛选条件"
+              style="width: 400px"
+              clearable
+            />
+            <span slot="reference" :style="!searchPrincipal?{}:{color:'#409EFF'}">负责人</span>
+          </el-popover>
+        </template>
         <template slot-scope="scope">
           <span>{{ scope.row.principal }}</span>
         </template>
@@ -102,7 +142,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="产品类型选择">
-          <el-select v-model="editForm.property" placeholder="请选择产品类型">
+          <el-select v-model="editForm.property" multiple placeholder="请选择产品类型">
             <el-option
               v-for="item in this.property"
               :key="item.property"
@@ -147,7 +187,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="产品类型选择">
-          <el-select v-model="addForm.property" placeholder="请选择产品类型">
+          <el-select v-model="addForm.property" multiple placeholder="请选择产品类型">
             <el-option
               v-for="item in this.property"
               :key="item.property"
@@ -200,20 +240,22 @@ export default {
       dialogAdd: false,
       property: null,
       editForm: {
-        property: '',
+        property: [],
         project: '',
         principal: '',
         status: '',
         dateTime: ''
       },
       addForm: {
-        property: '',
+        property: [],
         project: '',
         principal: '',
         status: '',
         dateTime: ''
       },
-      searchProject: ''
+      searchProject: '',
+      searchPrincipal: '',
+      searchProperty: ''
     }
   },
   created() {
@@ -254,6 +296,7 @@ export default {
       this.dialogEdit = false
       // eslint-disable-next-line no-undef
       this.editForm.dateTime = new Date().toLocaleString('cn', { hour12: false })
+      this.editForm = {}
       console.log('editForm:')
       console.log(this.editForm)
       console.log('--------------------')
@@ -271,6 +314,7 @@ export default {
       this.dialogAdd = false
       // eslint-disable-next-line no-undef
       this.addForm.dateTime = new Date().toLocaleString('cn', { hour12: false })
+      this.addForm = {}
       console.log('addForm:')
       console.log(this.addForm)
       console.log('--------------------')
@@ -279,9 +323,10 @@ export default {
     // 状态筛选
     filterStatus(value, row) {
       // eslint-disable-next-line no-return-assign
-      console.log(value)
-      console.log(row.status)
       return row.status === value
+    },
+    filterArea(value, row) {
+      return row.area === value
     }
   }
 }

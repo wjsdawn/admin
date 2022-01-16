@@ -81,7 +81,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="产品类型选择">
-          <el-select v-model="editForm.property" placeholder="请选择产品类型">
+          <el-select v-model="editForm.property" multiple placeholder="请选择产品类型">
             <el-option
               v-for="item in this.property"
               :key="item.property"
@@ -127,7 +127,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="产品类型选择">
-          <el-select v-model="addForm.property" placeholder="请选择产品类型">
+          <el-select v-model="addForm.property" multiple placeholder="请选择产品类型">
             <el-option
               v-for="item in this.property"
               :key="item.property"

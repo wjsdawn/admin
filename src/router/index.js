@@ -57,60 +57,60 @@ export const constantRoutes = [
 
   {
     path: '/science-area',
-    component:Layout,
+    component: Layout,
     children: [{
       path: 'index',
-      name:'science-area',
-      component:()=>import('@/views/science-area/index'),
-      meta: {title:'科技城新区'}
+      name: 'science-area',
+      component: () => import('@/views/science-area/index'),
+      meta: { title: '科技城新区' }
     }]
   },
 
   {
     path: '/center-area',
-    component:Layout,
+    component: Layout,
     children: [{
       path: 'index',
-      name:'center-area',
-      component:()=>import('@/views/center-area/index'),
-      meta: {title:'中心城区'}
+      name: 'center-area',
+      component: () => import('@/views/center-area/index'),
+      meta: { title: '中心城区' }
     }]
   },
 
   {
     path: '/nonglv',
-    component:Layout,
+    component: Layout,
     children: [{
       path: 'index',
-      name:'nonglv',
-      component:()=>import('@/views/nonglv/index'),
-      meta: {title:'农旅融合社'}
+      name: 'nonglv',
+      component: () => import('@/views/nonglv/index'),
+      meta: { title: '农旅融合区' }
     }]
   },
 
   {
     path: '/lingang',
-    component:Layout,
-    name:'lingang',
-    meta: {title:'临港经济开发区'},
+    component: Layout,
+    name: 'lingan g',
+    meta: { title: '临港经济开发区' },
     children: [
       {
         path: 'east',
-        name:'east',
-        component:()=>import('@/views/lingang/east/index'),
-        meta: {title:'临港经济发展东区'}
+        name: 'east',
+        component: () => import('@/views/lingang/east/index'),
+        meta: { title: '临港经济发展东区' }
       },
       {
         path: 'south',
-        name:'south',
-        component:()=>import('@/views/lingang/south/index'),
-        meta: {title:'临港经济发展南区'}
+        name: 'south',
+        component: () => import('@/views/lingang/south/index'),
+        meta: { title: '临港经济发展南区' }
       },
       {
         path: 'west',
-        name:'west',
-        component:()=>import('@/views/lingang/west/index'),
-        meta: {title:'临港经济发展西区'}
+        name: 'west',
+        component: () => import('@/views/lingang/west/index'),
+        meta: { title: '临港经济发展西区' }
       },
 
     ]
@@ -118,23 +118,23 @@ export const constantRoutes = [
 
   {
     path: '/property',
-    component:Layout,
+    component: Layout,
     children: [{
       path: 'index',
-      name:'property',
-      component:()=>import('@/views/property/index'),
-      meta: {title:'产业类别'}
+      name: 'property',
+      component: () => import('@/views/property/index'),
+      meta: { title: '产业类别' }
     }]
   },
 
   {
     path: '/project',
-    component:Layout,
+    component: Layout,
     children: [{
       path: 'index',
-      name:'project',
-      component:()=>import('@/views/project/index'),
-      meta: {title:'项目管理'}
+      name: 'project',
+      component: () => import('@/views/project/index'),
+      meta: { title: '项目管理' }
     }]
   },
 //下面不要

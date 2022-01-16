@@ -1,5 +1,17 @@
 <template>
   <div class="app-container">
+    <el-upload
+      class="upload"
+      ref="upload"
+      action="http://localhost:9528/dev-api/vue-admin-template/project/upload"
+      :on-preview="uploadHandlePreview"
+      :on-remove="uploadHandleRemove"
+      :file-list="fileList"
+      :auto-upload="false">
+      <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+      <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+      <div slot="tip" class="el-upload__tip">文件上传</div>
+    </el-upload>
     <el-table
       v-loading="listLoading"
       :data="list.filter(data =>
@@ -243,7 +255,8 @@ export default {
       addForm: {},
       searchProject: '',
       searchPrincipal: '',
-      searchProperty: ''
+      searchProperty: '',
+      fileList: []
     }
   },
   created() {
@@ -318,6 +331,16 @@ export default {
     },
     filterArea(value, row) {
       return row.area === value
+    },
+    submitUpload() {
+      console.log(this.fileList)
+      this.$refs.upload.submit()
+    },
+    uploadHandlePreview(file) {
+      console.log(file)
+    },
+    uploadHandleRemove(file, fileList) {
+      console.log(file)
     }
   }
 }

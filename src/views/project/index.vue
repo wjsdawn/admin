@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-table
       v-loading="listLoading"
-      :data="list"
+      :data="list.filter(data => data.project.toLowerCase().includes(searchProject.toLowerCase()))"
       element-loading-text="Loading"
       border
       fit
@@ -18,14 +18,28 @@
           {{ scope.row.area }}
         </template>
       </el-table-column>
-      <el-table-column label="产业类别" width="250" align="center" >
+      <el-table-column label="产业类别" width="250" align="center">
         <template slot-scope="scope">
           {{ scope.row.property }}
         </template>
       </el-table-column>
       <el-table-column label="项目名称" width="500" align="center">
+        <template slot="header" slot-scope="scope">
+          <el-popover
+            placement="top"
+            trigger="click"
+          >
+            <el-input
+              v-model="searchProject"
+              placeholder="输入"
+              style="width: 400px"
+              clearable>
+            </el-input>
+            <span slot="reference">项目名称</span>
+          </el-popover>
+        </template>
         <template slot-scope="scope">
-          {{scope.row.project}}
+          {{ scope.row.project }}
         </template>
       </el-table-column>
       <el-table-column label="负责人" width="110" align="center">
@@ -33,7 +47,14 @@
           <span>{{ scope.row.principal }}</span>
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="状态" width="110" align="center">
+      <el-table-column
+        class-name="status-col"
+        label="状态"
+        width="110"
+        align="center"
+        :filters="[{ text: '审核通过', value: '审核通过' }, { text: '待审核', value: '待审核' }, { text:'审核不通过', value: '审核不通过'}]"
+        :filter-method="filterStatus"
+      >
         <template slot-scope="scope">
           <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
         </template>
@@ -51,11 +72,13 @@
         <template slot-scope="scope">
           <el-button
             size="mini"
-            @click="handleEdit(scope.$index,scope.row)">编辑</el-button>
+            @click="handleEdit(scope.$index,scope.row)"
+          >编辑</el-button>
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index,scope.row)">删除</el-button>
+            @click="handleDelete(scope.$index,scope.row)"
+          >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -85,21 +108,20 @@
               :key="item.property"
               :label="item.property"
               :value="item.property"
-            >
-            </el-option>
+            />
           </el-select>
         </el-form-item>
         <el-form-item label="负责人">
-          <el-input v-model="editForm.principal" style="width: 60%"/>
+          <el-input v-model="editForm.principal" style="width: 60%" />
         </el-form-item>
         <el-form-item label="项目名称">
-          <el-input v-model="editForm.project" style="width: 60%"/>
+          <el-input v-model="editForm.project" style="width: 60%" />
         </el-form-item>
         <el-form-item label="状态">
           <el-radio-group v-model="editForm.status" :fill="editForm.status=='审核通过'?'#409EFF':(editForm.status=='审核不通过'?'#F56C6C':'#909399')">
-            <el-radio-button label="审核通过"></el-radio-button>
-            <el-radio-button label="审核不通过"></el-radio-button>
-            <el-radio-button label="待审核"></el-radio-button>
+            <el-radio-button label="审核通过" />
+            <el-radio-button label="审核不通过" />
+            <el-radio-button label="待审核" />
           </el-radio-group>
         </el-form-item>
       </el-form>
@@ -131,21 +153,20 @@
               :key="item.property"
               :label="item.property"
               :value="item.property"
-            >
-            </el-option>
+            />
           </el-select>
         </el-form-item>
         <el-form-item label="负责人">
-          <el-input v-model="addForm.principal" style="width: 60%"/>
+          <el-input v-model="addForm.principal" style="width: 60%" />
         </el-form-item>
         <el-form-item label="项目名称">
-          <el-input v-model="addForm.project" style="width: 60%"/>
+          <el-input v-model="addForm.project" style="width: 60%" />
         </el-form-item>
         <el-form-item label="状态">
           <el-radio-group v-model="addForm.status" :fill="addForm.status=='审核通过'?'#409EFF':(addForm.status=='审核不通过'?'#F56C6C':'#909399')">
-            <el-radio-button label="审核通过"></el-radio-button>
-            <el-radio-button label="审核不通过"></el-radio-button>
-            <el-radio-button label="待审核"></el-radio-button>
+            <el-radio-button label="审核通过" />
+            <el-radio-button label="审核不通过" />
+            <el-radio-button label="待审核" />
           </el-radio-group>
         </el-form-item>
       </el-form>
@@ -173,7 +194,7 @@ export default {
   },
   data() {
     return {
-      list: null,
+      list: [],
       listLoading: true,
       dialogEdit: false,
       dialogAdd: false,
@@ -191,7 +212,8 @@ export default {
         principal: '',
         status: '',
         dateTime: ''
-      }
+      },
+      searchProject: ''
     }
   },
   created() {
@@ -252,8 +274,15 @@ export default {
       console.log('addForm:')
       console.log(this.addForm)
       console.log('--------------------')
-    }
+    },
     // endregion
+    // 状态筛选
+    filterStatus(value, row) {
+      // eslint-disable-next-line no-return-assign
+      console.log(value)
+      console.log(row.status)
+      return row.status === value
+    }
   }
 }
 </script>
